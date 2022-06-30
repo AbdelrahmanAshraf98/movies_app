@@ -8,17 +8,22 @@ import '../models/PopularPeopleDataResponse.dart';
 class PeopleViewModel extends ChangeNotifier {
   PeopleRepository repo = GetIt.instance<PeopleRepository>();
   int page = 1;
-  late int totalPage ;
+  late int totalPage;
   List<People> peoples = [];
   Failure failure = Failure('Error', 555);
 
-  Future<bool> getPopularPeople() async {
-    var responseData = await repo.getPopularPeople(page: page);
+  Future<bool> getPopularPeople({bool more = false}) async {
+    var responseData =
+        await repo.getPopularPeople(page: more ? page + 1 : 1);
     responseData.fold(
       (l) {
         failure = l;
+        return false;
       },
       (r) {
+        if (!more) {
+          peoples = [];
+        }
         page = r.page!;
         peoples.addAll(r.people!);
         totalPage = r.totalPages!;
@@ -27,5 +32,4 @@ class PeopleViewModel extends ChangeNotifier {
     notifyListeners();
     return true;
   }
-
 }
