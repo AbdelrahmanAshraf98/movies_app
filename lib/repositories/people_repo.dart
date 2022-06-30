@@ -6,13 +6,13 @@ import 'package:movies_app/services/network_service.dart';
 import 'package:get_it/get_it.dart';
 import 'package:dartz/dartz.dart';
 
-import '../models/PopularPeopleResponseData.dart';
+import '../models/PopularPeopleDataResponse.dart';
 import '../models/failure_model.dart';
 
 class PeopleRepository {
   NetworkService networkService = GetIt.instance<NetworkService>();
 
-  Future<Either<Failure,PopularPeopleResponseData>> getPopularPeople({int page = 1}) async {
+  Future<Either<Failure,PopularPeopleDataResponse>> getPopularPeople({int page = 1}) async {
     String url = ApiConstants.BASE_URL +
         ApiConstants.PERSON_PREFIX +
         ApiConstants.POPULAR_PREFIX+
@@ -20,9 +20,10 @@ class PeopleRepository {
     var response = await networkService.get(url, ApiConstants.headers);
     var decodedData = jsonDecode(response.body);
     log(response.statusCode.toString());
-    log(response.body.toString());
+    //log(response.body.toString());
     if (response.statusCode == 200) {
-      return Right(PopularPeopleResponseData.fromJson(decodedData));
+      PopularPeopleDataResponse data = PopularPeopleDataResponse.fromJson(decodedData);
+      return Right(data);
     }
     return Left(Failure(decodedData['errors'],response.statusCode
     ));

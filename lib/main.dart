@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:movies_app/common/app_colors.dart';
-import 'package:movies_app/my_app.dart';
 import 'package:movies_app/providers/people_view_model.dart';
-import 'package:movies_app/repositories/people_repo.dart';
 import 'package:movies_app/services/dependency_injection_service.dart';
+import 'package:movies_app/views/people_view.dart';
 import 'package:provider/provider.dart';
 import 'common/theme_data.dart';
 
 void main() {
   DependencyInjection().setup();
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(
     MultiProvider(providers: [
       ChangeNotifierProvider(
@@ -27,7 +25,7 @@ class MyApp extends StatelessWidget {
       title: 'Movies App',
       debugShowCheckedModeBanner: false,
       theme: MyThemeData.themeData,
-      home: const MoviesApp(),
+      home: const PeopleScreen(),
     );
   }
 }

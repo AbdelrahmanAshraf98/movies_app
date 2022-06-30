@@ -1,24 +1,24 @@
-class PopularPeopleResponseData {
-  PopularPeopleResponseData({
+class PopularPeopleDataResponse {
+  PopularPeopleDataResponse({
     this.page,
     this.people,
     this.totalPages,
     this.totalResults,
   });
 
-  PopularPeopleResponseData.fromJson(dynamic json) {
+  PopularPeopleDataResponse.fromJson(dynamic json) {
     page = json['page'];
     if (json['results'] != null) {
       people = [];
       json['results'].forEach((v) {
-        people!.add(People.fromJson(v));
+        people?.add(People.fromJson(v));
       });
     }
     totalPages = json['total_pages'];
     totalResults = json['total_results'];
   }
   int? page;
-  List<People>? people;
+  List<People>? people = [People(name: 'ahmed')];
   int? totalPages;
   int? totalResults;
 
@@ -26,7 +26,7 @@ class PopularPeopleResponseData {
     final map = <String, dynamic>{};
     map['page'] = page;
     if (people != null) {
-      map['results'] = people!.map((v) => v.toJson()).toList();
+      map['People'] = people?.map((v) => v.toJson()).toList();
     }
     map['total_pages'] = totalPages;
     map['total_results'] = totalResults;
@@ -53,7 +53,7 @@ class People {
     if (json['known_for'] != null) {
       knownFor = [];
       json['known_for'].forEach((v) {
-        knownFor!.add(KnownFor.fromJson(v));
+        knownFor?.add(KnownFor.fromJson(v));
       });
     }
     knownForDepartment = json['known_for_department'];
@@ -76,7 +76,7 @@ class People {
     map['gender'] = gender;
     map['id'] = id;
     if (knownFor != null) {
-      map['known_for'] = knownFor!.map((v) => v.toJson()).toList();
+      map['known_for'] = knownFor?.map((v) => v.toJson()).toList();
     }
     map['known_for_department'] = knownForDepartment;
     map['name'] = name;
@@ -100,11 +100,10 @@ class KnownFor {
     this.releaseDate,
     this.title,
     this.video,
-    this.voteAverage,
-    this.voteCount,
   });
 
   KnownFor.fromJson(dynamic json) {
+    int i = 0;
     adult = json['adult'];
     backdropPath = json['backdrop_path'];
     genreIds = json['genre_ids'] != null ? json['genre_ids'].cast<int>() : [];
@@ -117,8 +116,6 @@ class KnownFor {
     releaseDate = json['release_date'];
     title = json['title'];
     video = json['video'];
-    voteAverage = json['vote_average'];
-    voteCount = json['vote_count'];
   }
   bool? adult;
   String? backdropPath;
@@ -132,8 +129,8 @@ class KnownFor {
   String? releaseDate;
   String? title;
   bool? video;
-  double? voteAverage;
-  int? voteCount;
+  // double? voteAverage;
+  // int? voteCount;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -149,8 +146,8 @@ class KnownFor {
     map['release_date'] = releaseDate;
     map['title'] = title;
     map['video'] = video;
-    map['vote_average'] = voteAverage;
-    map['vote_count'] = voteCount;
+    // map['vote_average'] = voteAverage;
+    // map['vote_count'] = voteCount;
     return map;
   }
 }
