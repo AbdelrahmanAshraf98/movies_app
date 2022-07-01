@@ -67,7 +67,10 @@ class _PeopleScreenState extends State<PeopleScreen> {
                       mainAxisSpacing: 20.0,
                     ),
                     itemBuilder: (context, index) {
-                      return PeopleCardWidget(index: index);
+                      return PeopleCardWidget(
+                          index: index,
+                          person: Provider.of<PeopleViewModel>(context)
+                              .peoples[index]);
                     },
                     itemCount:
                         Provider.of<PeopleViewModel>(context).peoples.length,

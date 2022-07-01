@@ -18,6 +18,9 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
+  fluttertoast: ^8.0.9
+  image_downloader: ^0.31.0
+  easy_image_viewer: ^1.0.4
   cached_network_image: ^3.2.0
   pull_to_refresh: ^2.0.0
   dartz: ^0.10.1
