@@ -18,6 +18,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
+  connectivity: ^3.0.6
   fluttertoast: ^8.0.9
   image_downloader: ^0.31.0
   easy_image_viewer: ^1.0.4

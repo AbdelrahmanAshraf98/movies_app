@@ -10,11 +10,10 @@ class PeopleViewModel extends ChangeNotifier {
   int page = 1;
   late int totalPage;
   List<People> peoples = [];
-  Failure failure = Failure('Error', 555);
+  Failure? failure;
 
   Future<bool> getPopularPeople({bool more = false}) async {
-    var responseData =
-        await repo.getPopularPeople(page: more ? page + 1 : 1);
+    var responseData = await repo.getPopularPeople(page: more ? page + 1 : 1);
     responseData.fold(
       (l) {
         failure = l;
