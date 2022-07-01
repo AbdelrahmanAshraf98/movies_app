@@ -27,7 +27,7 @@ class _ProfileViewState extends State<ProfileView> {
                 child: Hero(
                   tag: 'photo',
                   child: CustomCachedNetworkImage(
-                      imgPath: widget.person.profilePath!),
+                      imgPath: widget.person.profilePath),
                 ),
               ),
               Padding(
@@ -49,7 +49,7 @@ class _ProfileViewState extends State<ProfileView> {
                         Center(
                           child: Text(
                             widget.person.knownForDepartment!,
-                            style:const TextStyle(color: Colors.white),
+                            style: const TextStyle(color: Colors.white),
                           ),
                         ),
                       ],
@@ -62,7 +62,7 @@ class _ProfileViewState extends State<ProfileView> {
                         Center(
                           child: Text(
                             widget.person.popularity.toString(),
-                            style:const TextStyle(color: Colors.white),
+                            style: const TextStyle(color: Colors.white),
                           ),
                         ),
                       ],
@@ -81,7 +81,8 @@ class _ProfileViewState extends State<ProfileView> {
                     mainAxisSpacing: 20.0,
                   ),
                   itemBuilder: (context, index) {
-                    String imgPath = widget.person.knownFor![index].backdropPath!;
+                    String imgPath =
+                        widget.person.knownFor![index].backdropPath!;
                     return GestureDetector(
                       onTap: () {
                         showDialog(
@@ -106,5 +107,3 @@ class _ProfileViewState extends State<ProfileView> {
     );
   }
 }
-
-

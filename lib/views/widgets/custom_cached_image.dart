@@ -5,11 +5,11 @@ import '../../common/app_colors.dart';
 class CustomCachedNetworkImage extends StatelessWidget {
   const CustomCachedNetworkImage({
     Key? key,
-    required this.imgPath,
+    this.imgPath,
     this.boxFit = BoxFit.cover,
   }) : super(key: key);
 
-  final String imgPath;
+  final String? imgPath;
   final BoxFit boxFit;
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class CustomCachedNetworkImage extends StatelessWidget {
           child: CircularProgressIndicator.adaptive(
               valueColor:
               AlwaysStoppedAnimation<Color>(AppColors.yellowColor))),
-      errorWidget: (context, url, error) => const Icon(Icons.error),
+      errorWidget: (context, url, error) => Container(color: AppColors.subColor,child: const Icon(Icons.error)),
       fit: boxFit,
     );
   }
